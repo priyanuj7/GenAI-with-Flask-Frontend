@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>
+            Laptop Recommender
+        </title>
+        <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    </head>
+
+    <body> 
+        <div class="outercontainer"> 
+            <div class="center">
+                <h1 id="titlestyle">
+                    Laptop Recommender
+                </h1>
+            </div>
+            <div class="conversationcontainer">
+                {% for entry in name %}
+                <div class="{% if entry.bot %}bot{% else %}user{% endif %}">
+                    {% if entry.bot %}
+                    {{ entry.bot }}
+                    {% else %}
+                    {{ entry.user }}
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+            <form action = "/invite" method = "POST">
+                <input type = "text" name = "user_input_messages" id="inputtextbox">
+                <input type = "submit" value = "Submit" id="submitbutton">
+            </form>
+
+            <form action = "/end_conv" method = "POST" class="center">
+                <button type = "submit">    END CONVERSATION</button> 
+                <!-- <button type = "submit" id="startbutton">    START </button>  -->
+            </form>
+        </div>
+
+        <script>
+            function scrollToBottom() {
+                var chatContainer = document.getElementById('conversationcontainer');
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            window.onload = scrollToBottom;
+
+        </script>
+    </body>
+</html>
